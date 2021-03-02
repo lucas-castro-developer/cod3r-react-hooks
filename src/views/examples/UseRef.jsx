@@ -3,7 +3,7 @@ import PageTitle from "../../components/layout/PageTitle";
 import SectionTitle from "../../components/layout/SectionTitle";
 
 const merge = function (s1, s2) {
-  return s1 + s2;
+  return [...s1].map((e, i) => `${e}${s2[i] || ""}`).join("");
 };
 
 const UseRef = (props) => {
@@ -16,7 +16,7 @@ const UseRef = (props) => {
   useEffect(
     function () {
       count.current = count.current + 1;
-      myInput2.current.focus()
+      myInput2.current.focus();
     },
     [value1]
   );
@@ -24,7 +24,7 @@ const UseRef = (props) => {
   useEffect(
     function () {
       count.current = count.current + 1;
-      myInput1.current.focus()
+      myInput1.current.focus();
     },
     [value2]
   );
@@ -39,7 +39,7 @@ const UseRef = (props) => {
       <div className="center">
         <div>
           <span className="text">Valor: </span>
-          <span className="text">{value1} [</span>
+          <span className="text">{merge(value1, value2)} [</span>
           <span className="text red">{count.current}</span>
           <span className="text">]</span>
         </div>
